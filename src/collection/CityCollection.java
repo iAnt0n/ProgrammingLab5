@@ -17,11 +17,6 @@ public class CityCollection {
         this.initTime=LocalDateTime.now();
     }
 
-    public void update(String s, City c, int id){
-        c.setId(id);
-        cityMap.put(s, c);
-    }
-
     public LinkedHashMap<String, City> getCityMap() {
         return cityMap;
     }

@@ -18,15 +18,17 @@ public class UpdateIdCommand extends Command {
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         try {
             int id = Integer.parseInt(args[0]);
-            boolean flag = false;
+            boolean idFound = false;
             for (Map.Entry<String, City> e : cm.getCollection().getCityMap().entrySet()) {
                 if (e.getValue().getId() == id) {
-                    flag = true;
-                    cm.update(e.getKey(), ui.readCity(), id);
+                    idFound = true;
+                    City elem = ui.readCity();
+                    elem.setId(id);
+                    cm.put(e.getKey(), elem);
                     ui.writeln("Элемент с ID " + args[0] + " обновлен");
                 }
             }
-            if (!flag){
+            if (!idFound){
                 ui.writeln("Нет элемента с таким ID");
             }
         }

@@ -50,7 +50,6 @@ public class CommandInvoker {
     public void executeCommand(CollectionManager cm, UserInterface ui, String s){
         String[] cmd = parseCommand(s);
         if (cmd[0].equals("")){
-            ui.write("\n");
             return;
         }
         String[] args = Arrays.copyOfRange(cmd, 1, cmd.length);

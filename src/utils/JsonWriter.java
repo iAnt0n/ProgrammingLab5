@@ -13,9 +13,8 @@ public class JsonWriter {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     public void write(String path, LinkedHashMap<String, City> collection) throws IOException {
-        PrintWriter printWriter = new PrintWriter(new FileWriter(path));
-        printWriter.print(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(collection));
-        printWriter.flush();
-        printWriter.close();
+        try(PrintWriter printWriter = new PrintWriter(new FileWriter(path))) {
+            printWriter.print(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(collection));
+        }
     }
 }

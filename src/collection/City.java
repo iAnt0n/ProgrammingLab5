@@ -1,18 +1,24 @@
 package collection;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import exceptions.InvalidFieldException;
+import utils.LocalDateTimeDeserializer;
+import utils.LocalDateTimeSerializer;
+
 
 import java.time.LocalDateTime;
 
 public class City implements Comparable{
-    @JsonIgnore
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    @JsonIgnore
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private float area; //Значение поля должно быть больше 0
     private Long population; //Значение поля должно быть больше 0, Поле не может быть null
@@ -32,7 +38,39 @@ public class City implements Comparable{
                 @JsonProperty("climate") Climate climate,
                 @JsonProperty("government") Government government,
                 @JsonProperty("standardOfLiving") StandardOfLiving standardOfLiving,
-                @JsonProperty("governor") Human governor){
+                @JsonProperty("governor") Human governor,
+                @JsonProperty("creationDate") LocalDateTime creationDate,
+                @JsonProperty("id") int id){
+        this.name=name;
+        this.coordinates=coordinates;
+        this.area=area;
+        this.population=population;
+        this.metersAboveSeaLevel=metersAboveSeaLevel;
+        this.climate=climate;
+        this.government=government;
+        this.standardOfLiving=standardOfLiving;
+        this.governor=governor;
+        this.creationDate = creationDate==null ? LocalDateTime.now() : creationDate;
+        this.id = id;
+        checkFields();
+        if (getId()==0) {
+            this.setId(maxId);
+            maxId++;
+        }
+        else{
+            maxId = Math.max(maxId, getId()+1);
+        }
+    }
+
+    public City(String name,
+                Coordinates coordinates,
+                float area,
+                Long population,
+                Float metersAboveSeaLevel,
+                Climate climate,
+                Government government,
+                StandardOfLiving standardOfLiving,
+                Human governor){
         this.name=name;
         this.coordinates=coordinates;
         this.area=area;
@@ -44,9 +82,12 @@ public class City implements Comparable{
         this.governor=governor;
         this.creationDate = LocalDateTime.now();
         checkFields();
-        this.setId(maxId);
-        maxId++;
+        if(getId()==0){
+            this.id = maxId;
+            maxId++;
+        }
     }
+
 
     public int getId() {
         return id;
@@ -98,22 +139,22 @@ public class City implements Comparable{
 
     public void checkFields(){
         if (name==null||name.isEmpty()){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле name");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле name");
         }
         if (coordinates==null){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле coordinates");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле coordinates");
         }
         if (area<0){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле area");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле area");
         }
         if (population <= 0){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле population");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле population");
         }
         if (government==null){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле government");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле government");
         }
         if (governor==null){
-            throw new InvalidFieldException("Ошибка в исходном файле Json: поле governor");
+            throw new InvalidFieldException("Ошибка в поле объекта: поле governor");
         }
     }
 
@@ -131,7 +172,11 @@ public class City implements Comparable{
 
     @Override
     public String toString() {
-        return "id: "+getId()+", name: "+getName();
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "Проблема со строковым представлением данного элемента";
+        }
     }
 }
 

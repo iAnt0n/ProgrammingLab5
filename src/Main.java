@@ -1,5 +1,6 @@
 import collection.CityCollection;
 import collection.CollectionManager;
+import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import commands.CommandInvoker;
 import exceptions.InvalidArgumentsException;
 import exceptions.InvalidFieldException;
@@ -22,9 +23,9 @@ public class Main {
         if (args.length > 0) {
             Path pathToInitFile = Paths.get(args[0]);
             try {
-                collection = new CityCollection(jr.read("C:\\Users\\Антон\\Desktop\\jso.json"));
-            } catch (IOException | InvalidFieldException e) {
-                ui.writeln(e.getMessage());
+                collection = new CityCollection(jr.read(pathToInitFile.toString()));
+            }
+            catch (IOException e) {
                 collection = new CityCollection();
                 ui.writeln("Ошибка открытия файла. Инициализирована пустая коллекция");
             }

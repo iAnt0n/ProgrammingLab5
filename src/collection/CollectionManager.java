@@ -44,10 +44,6 @@ public class CollectionManager {
         collection.getCityMap().remove(s);
     }
 
-    public void update(String s, City c, int id){
-        collection.update(s, c, id);
-    }
-
     public void save(String path) throws IOException {
         JsonWriter writer = new JsonWriter();
         writer.write(path, collection.getCityMap());

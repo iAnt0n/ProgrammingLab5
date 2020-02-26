@@ -49,7 +49,7 @@ public class UserInterface {
         else return scanner.nextLine();
     }
 
-    public Double readDouble(String msg, Double min, Double max){
+    public Double readDouble(String msg, Number min, Number max){
         if (interactive) {
             writeln(msg);
             Double result = null;
@@ -70,7 +70,7 @@ public class UserInterface {
         else return Double.parseDouble(scanner.nextLine());
     }
 
-    public Long readLong(String msg, Long min, Long max){
+    public Long readLong(String msg, Number min, Number max){
         if(interactive) {
             writeln(msg);
             Long result = null;
@@ -139,7 +139,7 @@ public class UserInterface {
 
     public StandardOfLiving readStandardOfLiving() {
         if (interactive) {
-            writeln("Введите уровень жизни из предложенных:  Gerontocracy, Despotism, Thalassocracy, - или же пустую строку");
+            writeln("Введите уровень жизни из предложенных:  Ultra_high, Low, Nightmare - или же пустую строку");
             while (true) {
                 String sol = scanner.nextLine().trim();
                 if (sol.isEmpty()) {
@@ -161,23 +161,23 @@ public class UserInterface {
 
     public Human readHuman(){
         String name = readString("Введите имя губернатора");
-        int age = readLong("Введите возраст губернатора (long > 0)", (long) 0, null).intValue();
-        Double height = readDouble("Введите рост губернатора (double > 0)", (double) 0, null);
+        int age = readLong("Введите возраст губернатора (long > 0)", 0, Integer.MAX_VALUE).intValue();
+        Double height = readDouble("Введите рост губернатора (double > 0)", 0, Double.MAX_VALUE);
         return new Human(name, age, height);
     }
 
     public Coordinates readCoordinates(){
-        Integer x = readLong("Введите Х (long > -773)", (long) -773, null).intValue();
-        Double y = readDouble("Введите Y (double < 664)", null, (double) 664);
+        Integer x = readLong("Введите Х (long > -773)", -773, Integer.MAX_VALUE).intValue();
+        Double y = readDouble("Введите Y (double < 664)", Double.MIN_VALUE, 664);
         return new Coordinates(x, y);
     }
 
     public City readCity(){
         String name = readString("Введите имя города");
         Coordinates coordinates = readCoordinates();
-        float area = readDouble("Введите площадь города (double > 0)", (double) 0, null).floatValue();
-        Long population = readLong("Введите популяцию (long > 0)", (long) 0, null);
-        Float metersAboveSeaLevel = readDouble("Введите высоту (float)", null, null).floatValue(); //WTF
+        float area = readDouble("Введите площадь города (float > 0)", 0, Float.MAX_VALUE).floatValue();
+        Long population = readLong("Введите популяцию (long > 0)", 0, Long.MAX_VALUE);
+        Float metersAboveSeaLevel = readDouble("Введите высоту (float)", Float.MIN_VALUE, Float.MAX_VALUE).floatValue();
         Climate climate = readClimate();
         Government government = readGovernment();
         StandardOfLiving standardOfLiving = readStandardOfLiving();
@@ -185,31 +185,12 @@ public class UserInterface {
         return new City(name, coordinates, area, population, metersAboveSeaLevel, climate, government, standardOfLiving, governor);
     }
 
-    private boolean checkLong(long s, Long min, Long max) {
-        if (min == null) {
-            return s<max;
-        }
-        else if (max==null){
-            return s>min;
-        }
-        else{
-            return s>min&&s<max;
-        }
+    private boolean checkLong(long s, Number min, Number max) {
+            return s>min.longValue()&&s<max.longValue();
     }
 
-    private boolean checkDouble(double s, Double min, Double max) {
-        if (min==null && max==null){
-            return true;
-        }
-        else if (min == null) {
-            return s<max;
-        }
-        else if (max==null){
-            return s>min;
-        }
-        else{
-            return s>min&&s<max;
-        }
+    private boolean checkDouble(double s, Number min, Number max) {
+            return s>min.doubleValue()&&s<max.doubleValue();
     }
 
     public boolean hasNextLine(){
