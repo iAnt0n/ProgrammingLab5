@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду exit
+ */
 public class ExitCommand extends Command {
     public ExitCommand() {
         name = "exit";

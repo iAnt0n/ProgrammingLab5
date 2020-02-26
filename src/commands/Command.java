@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Абстрактный класс, описывающий все команды
+ */
 public abstract class Command {
     protected String name;
     protected String helpString;

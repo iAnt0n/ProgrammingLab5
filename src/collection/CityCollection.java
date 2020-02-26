@@ -3,6 +3,9 @@ package collection;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 
+/**
+ * Коллекция, которой управляет программа
+ */
 public class CityCollection {
     private LinkedHashMap<String, City> cityMap;
     private LocalDateTime initTime;

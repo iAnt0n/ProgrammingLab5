@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
+/**
+ * Реализующий singleton класс, который служит для вызова команд на основании введеной пользователем строки
+ */
 public class CommandInvoker {
     private static CommandInvoker instance;
 

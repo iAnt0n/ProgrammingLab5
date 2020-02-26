@@ -9,6 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
+/**
+ * Класс, отвечающий за десериализацию объектов из файла и преобразовывающий их в LinkedHashMap<String, City></String,>
+ */
 public class JsonReader {
     private ObjectMapper objectMapper = new ObjectMapper();
     public LinkedHashMap<String, City> read(String path) throws IOException {

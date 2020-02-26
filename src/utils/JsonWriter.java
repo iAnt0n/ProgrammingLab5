@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 
-
+/**
+ * Класс, отвечающий за сериализацию объектов и запись их в файл
+ */
 public class JsonWriter {
     private ObjectMapper objectMapper = new ObjectMapper();
 

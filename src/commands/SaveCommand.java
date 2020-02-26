@@ -5,6 +5,9 @@ import utils.UserInterface;
 
 import java.io.IOException;
 
+/**
+ * Класс, реализующий команду save
+ */
 public class SaveCommand extends Command {
     public SaveCommand(){
         name = "save";

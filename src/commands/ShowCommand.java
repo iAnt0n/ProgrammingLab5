@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду show
+ */
 public class ShowCommand extends Command{
     public ShowCommand(){
         name = "show";

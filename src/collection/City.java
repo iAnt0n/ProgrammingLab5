@@ -13,6 +13,9 @@ import utils.LocalDateTimeSerializer;
 
 import java.time.LocalDateTime;
 
+/**
+ * Класс, экземпляры которого хранятся в коллекции
+ */
 public class City implements Comparable{
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -28,6 +31,7 @@ public class City implements Comparable{
     private StandardOfLiving standardOfLiving; //Поле может быть null
     private Human governor; //Поле не может быть null
     private static int maxId = 1;
+
 
     @JsonCreator
     public City(@JsonProperty("name") String name,

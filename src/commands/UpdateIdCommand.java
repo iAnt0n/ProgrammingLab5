@@ -7,6 +7,9 @@ import utils.UserInterface;
 
 import java.util.Map;
 
+/**
+ * Класс, реализующий команду update
+ */
 public class UpdateIdCommand extends Command {
     public UpdateIdCommand(){
         name = "update";

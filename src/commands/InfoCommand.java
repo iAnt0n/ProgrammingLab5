@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду help
+ */
 public class InfoCommand extends Command {
     public InfoCommand(){
         name = "info";

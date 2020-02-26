@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду count_by_governor
+ */
 public class CountByGovernorCommand extends Command{
     public CountByGovernorCommand(){
         name = "count_by_governor";

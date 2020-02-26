@@ -4,6 +4,9 @@ import collection.CollectionManager;
 import exceptions.InvalidArgumentsException;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду replace_if_lower
+ */
 public class ReplaceIfLowerCommand extends Command {
     public ReplaceIfLowerCommand(){
         name = "replace_if_lower";

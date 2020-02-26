@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду clear
+ */
 public class ClearCommand extends Command{
     public ClearCommand(){
         name = "clear";

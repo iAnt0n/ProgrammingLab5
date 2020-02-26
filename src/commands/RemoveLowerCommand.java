@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду remove_lower
+ */
 public class RemoveLowerCommand extends Command {
     public RemoveLowerCommand(){
         name = "remove_lower";

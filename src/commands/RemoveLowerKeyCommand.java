@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду remove_lower_key
+ */
 public class RemoveLowerKeyCommand extends Command{
     public RemoveLowerKeyCommand(){
         name = "remove_lower_key";

@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Класс для кастомной десериализации класса LocalDateTime
+ */
 public class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
     public LocalDateTimeDeserializer() {
         this(null);

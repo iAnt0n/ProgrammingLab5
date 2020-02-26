@@ -7,6 +7,9 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Scanner;
 
+/**
+ * Класс, служащий для запроса ввода и его обработки, а так же для вывода сообщений
+ */
 public class UserInterface {
     private Reader reader;
     private Writer writer;

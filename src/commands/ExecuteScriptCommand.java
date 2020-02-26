@@ -11,6 +11,9 @@ import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Класс, реализующий команду execute_script
+ */
 public class ExecuteScriptCommand extends Command {
     public ExecuteScriptCommand(){
         name = "execute_script";

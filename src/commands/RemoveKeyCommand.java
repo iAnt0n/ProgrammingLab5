@@ -4,6 +4,9 @@ import collection.CollectionManager;
 import exceptions.InvalidArgumentsException;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду remove_key
+ */
 public class RemoveKeyCommand extends Command{
     public RemoveKeyCommand(){
         name = "remove_key";

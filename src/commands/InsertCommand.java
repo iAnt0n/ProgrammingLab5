@@ -3,6 +3,9 @@ package commands;
 import collection.CollectionManager;
 import utils.UserInterface;
 
+/**
+ * Класс, реализующий команду insert
+ */
 public class InsertCommand extends Command {
     public InsertCommand(){
         name = "insert";
