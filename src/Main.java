@@ -1,9 +1,7 @@
 import collection.CityCollection;
 import collection.CollectionManager;
-import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import commands.CommandInvoker;
 import exceptions.InvalidArgumentsException;
-import exceptions.InvalidFieldException;
 import utils.JsonReader;
 import utils.UserInterface;
 
@@ -14,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         JsonReader jr = new JsonReader();
         UserInterface ui = new UserInterface(new InputStreamReader(System.in),
                                              new OutputStreamWriter(System.out), true);
@@ -42,7 +40,7 @@ public class Main {
                     ci.executeCommand(cm, ui, ui.read());
                 }
                 catch(NullPointerException e){
-                    ui.writeln("Неизвестная команда");
+                    ui.writeln("Неизвестная команда. Используйте help для помощи");
                 }
                 catch (InvalidArgumentsException e){
                     ui.writeln("Неверные аргументы команды. Используйте help для помощи");

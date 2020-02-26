@@ -92,7 +92,7 @@ public class UserInterface {
     }
     public Climate readClimate() {
         if(interactive) {
-            writeln("Введите климат из предлженных: Monsoon, Humidcontinental, Oceanic, Mediterranian, - или же пустую строку");
+            writeln("Введите климат из предложенных: Monsoon, Humidcontinental, Oceanic, Mediterranian, - или же пустую строку");
             while (true) {
                 String climate = scanner.nextLine().trim();
                 if (climate.isEmpty()) {
