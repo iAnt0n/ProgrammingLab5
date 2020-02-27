@@ -58,7 +58,7 @@ public class CommandInvoker {
         String[] args = Arrays.copyOfRange(cmd, 1, cmd.length);
         Command execCmd = commands.get(cmd[0].toLowerCase());
         if (execCmd.getArgLen()!=args.length){
-            throw new InvalidArgumentsException("");
+            throw new InvalidArgumentsException("Неверные аргументы команды");
         }
         execCmd.execute(cm, ui, args);
     }

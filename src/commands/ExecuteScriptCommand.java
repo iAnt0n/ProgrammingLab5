@@ -1,6 +1,7 @@
 package commands;
 
 import collection.CollectionManager;
+import exceptions.ExecuteScriptException;
 import exceptions.InvalidFieldException;
 import utils.UserInterface;
 
@@ -28,6 +29,9 @@ public class ExecuteScriptCommand extends Command {
             UserInterface fileInterface = new UserInterface(new BufferedReader(new FileReader(path.toFile())), new OutputStreamWriter(System.out), false);
             while (fileInterface.hasNextLine()) {
                 String line = fileInterface.read();
+                if (line.split(" +")[0].equals("execute_script")){
+                    throw new ExecuteScriptException("Вызов скрипта в скрипте");
+                }
                 CommandInvoker.getInstance().executeCommand(cm, fileInterface, line);
             }
         }
@@ -39,6 +43,9 @@ public class ExecuteScriptCommand extends Command {
         }
         catch (InvalidFieldException e){
             ui.writeln("Выполнение скрипта прервано из-за ошибки: неверное значение поля при добавлении или изменении элемента");
+        }
+        catch (ExecuteScriptException e){
+            ui.writeln("Выполнение скрипта прервано из-за ошибки: вызов скрипта в скрипте");
         }
         catch (Exception e){
             ui.writeln("Выполнение скрипта прервано из-за ошибки: неизвестная ошибка");
