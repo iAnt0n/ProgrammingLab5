@@ -3,12 +3,12 @@ import collection.CollectionManager;
 import commands.CommandInvoker;
 import exceptions.InvalidArgumentsException;
 import utils.JsonReader;
-import utils.ShutdownHook;
 import utils.UserInterface;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.NoSuchElementException;
 
 /**
  * Главный класс программы
@@ -35,23 +35,33 @@ public class Main {
         }
         CollectionManager cm = new CollectionManager(collection);
 
-        Runtime.getRuntime().addShutdownHook(ShutdownHook.hook);
+        Thread hook = new Thread(){
+            public void run(){
+                ci.executeCommand(cm, ui, "save");
+                ui.writeln("Работа программы прервана. Изменения сохранены");
+            }
+        };
+        Runtime.getRuntime().addShutdownHook(hook);
 
-        while (true){
-            if (ui.hasNextLine()){
-                try {
-                    ci.executeCommand(cm, ui, ui.read());
-                }
-                catch(NullPointerException e){
-                    ui.writeln("Неизвестная команда. Используйте help для помощи");
-                }
-                catch (InvalidArgumentsException e){
-                    ui.writeln("Неверные аргументы команды. Используйте help для помощи");
-                }
-                catch (Exception e){
-                    ui.writeln("Случилось нечто страшное и непредвиденное");
-                }
+        while (ui.hasNextLine()) {
+            try {
+                String cmd = ui.read();
+                if (cmd.trim().equals("exit")) Runtime.getRuntime().removeShutdownHook(hook);
+                ci.executeCommand(cm, ui, cmd);
+            }
+            catch(NullPointerException e){
+                ui.writeln("Неизвестная команда. Используйте help для помощи");
+            }
+            catch (InvalidArgumentsException e){
+                ui.writeln("Неверные аргументы команды. Используйте help для помощи");
+            }
+            catch (NoSuchElementException e){
+                ui.writeln("Ввода больше не будет, сканер принял ислам");
+            }
+            catch (Exception e){
+                ui.writeln("Произошло нечто непредвиденное");
             }
         }
-    }    
+    }
 }
+

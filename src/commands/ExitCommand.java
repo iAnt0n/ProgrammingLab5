@@ -1,7 +1,6 @@
 package commands;
 
 import collection.CollectionManager;
-import utils.ShutdownHook;
 import utils.UserInterface;
 
 /**
@@ -16,7 +15,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
-        Runtime.getRuntime().removeShutdownHook(ShutdownHook.hook);
         System.exit(0);
     }
 }
