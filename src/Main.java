@@ -3,14 +3,16 @@ import collection.CollectionManager;
 import commands.CommandInvoker;
 import exceptions.InvalidArgumentsException;
 import utils.JsonReader;
+import utils.ShutdownHook;
 import utils.UserInterface;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+/**
+ * Главный класс программы
+ */
 public class Main {
     public static void main(String[] args) {
         JsonReader jr = new JsonReader();
@@ -19,9 +21,8 @@ public class Main {
         CommandInvoker ci = new CommandInvoker();
         CityCollection collection;
         if (args.length > 0) {
-            Path pathToInitFile = Paths.get(args[0]);
             try {
-                collection = new CityCollection(jr.read(pathToInitFile.toString()));
+                collection = new CityCollection(jr.read(args[0]));
             }
             catch (IOException e) {
                 collection = new CityCollection();
@@ -32,8 +33,10 @@ public class Main {
             collection = new CityCollection();
             ui.writeln("Файл с коллекцей не указан. Инициализирована пустая коллекция");
         }
-
         CollectionManager cm = new CollectionManager(collection);
+
+        Runtime.getRuntime().addShutdownHook(ShutdownHook.hook);
+
         while (true){
             if (ui.hasNextLine()){
                 try {

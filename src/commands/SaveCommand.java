@@ -18,7 +18,7 @@ public class SaveCommand extends Command {
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         try {
-            cm.save("C:\\Users\\Антон\\Desktop\\out.json");
+            cm.save("out.json");
         }
         catch (IOException e){
             ui.writeln("Ошибка при записи в файл");
