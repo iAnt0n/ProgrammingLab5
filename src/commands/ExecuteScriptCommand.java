@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 public class ExecuteScriptCommand extends Command {
     public ExecuteScriptCommand(){
         name = "execute_script";
-        helpString = "считать и исполнить скрипт из указанного файла.";
+        helpString = "file_name считать и исполнить скрипт из указанного файла.";
         argLen = 1;
     }
 

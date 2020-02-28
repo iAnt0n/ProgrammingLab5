@@ -9,7 +9,7 @@ import utils.UserInterface;
 public class CountByGovernorCommand extends Command{
     public CountByGovernorCommand(){
         name = "count_by_governor";
-        helpString = "вывести количество элементов, значение поля governor которых равно заданному";
+        helpString = "{human}: вывести количество элементов, значение поля governor которых равно заданному";
         argLen = 0;
     }
 

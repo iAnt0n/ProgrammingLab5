@@ -10,7 +10,7 @@ import utils.UserInterface;
 public class ReplaceIfLowerCommand extends Command {
     public ReplaceIfLowerCommand(){
         name = "replace_if_lower";
-        helpString = "заменить значение по ключу, если новое значение меньше старого";
+        helpString = "key {element} заменить значение по ключу, если новое значение меньше старого";
         argLen = 1;
     }
 

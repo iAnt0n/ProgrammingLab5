@@ -171,7 +171,7 @@ public class UserInterface {
 
     public Coordinates readCoordinates(){
         Integer x = readLong("Введите Х (long > -773)", -773, Integer.MAX_VALUE).intValue();
-        Double y = readDouble("Введите Y (double < 664)", Double.MIN_VALUE, 664);
+        Double y = readDouble("Введите Y (double < 664)", -Double.MAX_VALUE, 664);
         return new Coordinates(x, y);
     }
 
@@ -180,7 +180,7 @@ public class UserInterface {
         Coordinates coordinates = readCoordinates();
         float area = readDouble("Введите площадь города (float > 0)", 0, Float.MAX_VALUE).floatValue();
         Long population = readLong("Введите популяцию (long > 0)", 0, Long.MAX_VALUE);
-        Float metersAboveSeaLevel = readDouble("Введите высоту (float)", Float.MIN_VALUE, Float.MAX_VALUE).floatValue();
+        Float metersAboveSeaLevel = readDouble("Введите высоту (float)", -Float.MAX_VALUE, Float.MAX_VALUE).floatValue();
         Climate climate = readClimate();
         Government government = readGovernment();
         StandardOfLiving standardOfLiving = readStandardOfLiving();

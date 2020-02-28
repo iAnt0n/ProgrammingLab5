@@ -1,5 +1,6 @@
 import collection.CityCollection;
 import collection.CollectionManager;
+import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import commands.CommandInvoker;
 import exceptions.InvalidArgumentsException;
 import utils.JsonReader;
@@ -23,6 +24,12 @@ public class Main {
         if (args.length > 0) {
             try {
                 collection = new CityCollection(jr.read(args[0]));
+                ui.writeln("Коллекция загружена. Введите help для просмотра команд");
+            }
+            catch (ValueInstantiationException e){
+                collection = new CityCollection();
+                ui.writeln(e.getMessage());
+                ui.writeln("Инициализирована пустая коллекция");
             }
             catch (IOException e) {
                 collection = new CityCollection();
@@ -35,12 +42,10 @@ public class Main {
         }
         CollectionManager cm = new CollectionManager(collection);
 
-        Thread hook = new Thread(){
-            public void run(){
-                ci.executeCommand(cm, ui, "save");
-                ui.writeln("Работа программы прервана. Изменения сохранены");
-            }
-        };
+        Thread hook = new Thread(() -> {
+            ci.executeCommand(cm, ui, "save");
+            ui.writeln("Работа программы прервана. Изменения сохранены");
+        });
         Runtime.getRuntime().addShutdownHook(hook);
 
         while (ui.hasNextLine()) {

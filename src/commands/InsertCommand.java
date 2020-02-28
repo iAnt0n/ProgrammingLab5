@@ -9,7 +9,7 @@ import utils.UserInterface;
 public class InsertCommand extends Command {
     public InsertCommand(){
         name = "insert";
-        helpString = "добавить новый элемент с заданным ключом";
+        helpString = "key {element} добавить новый элемент с заданным ключом";
         argLen = 1;
     }
 

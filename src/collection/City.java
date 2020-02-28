@@ -154,6 +154,9 @@ public class City implements Comparable{
         if (population <= 0){
             throw new InvalidFieldException("Ошибка в поле объекта: поле population");
         }
+        if(metersAboveSeaLevel==null){
+            throw new InvalidFieldException("Ошибка в поле объекта: поле metersAboveSeaLevel");
+        }
         if (government==null){
             throw new InvalidFieldException("Ошибка в поле объекта: поле government");
         }

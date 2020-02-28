@@ -9,7 +9,7 @@ import utils.UserInterface;
 public class RemoveLowerCommand extends Command {
     public RemoveLowerCommand(){
         name = "remove_lower";
-        helpString = "удалить из коллекции все элементы, меньшие, чем заданный";
+        helpString = "{element} удалить из коллекции все элементы, меньшие, чем заданный";
         argLen = 0;
     }
 

@@ -16,7 +16,7 @@ public class HelpCommand extends Command {
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         for (Command command : CommandInvoker.getInstance().getAllCommands()) {
-            ui.writeln(command.getName() + ": " + command.getHelpString());
+            ui.writeln(command.getName() +" " + command.getHelpString());
         }
     }
 }

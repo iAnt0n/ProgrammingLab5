@@ -13,7 +13,7 @@ import java.util.Map;
 public class UpdateIdCommand extends Command {
     public UpdateIdCommand(){
         name = "update";
-        helpString = "обновить значение элемента коллекции, id которого равен заданному";
+        helpString = "id {element} обновить значение элемента коллекции, id которого равен заданному";
         argLen = 1;
     }
 

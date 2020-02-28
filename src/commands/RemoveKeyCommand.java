@@ -10,7 +10,7 @@ import utils.UserInterface;
 public class RemoveKeyCommand extends Command{
     public RemoveKeyCommand(){
         name = "remove_key";
-        helpString = "удалить элемент из коллекции по его ключу";
+        helpString = "key удалить элемент из коллекции по его ключу";
         argLen = 1;
     }
 

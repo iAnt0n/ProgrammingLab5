@@ -9,7 +9,7 @@ import utils.UserInterface;
 public class RemoveLowerKeyCommand extends Command{
     public RemoveLowerKeyCommand(){
         name = "remove_lower_key";
-        helpString = "удалить из коллекции все элементы, ключ которых меньше, чем заданный";
+        helpString = "key удалить из коллекции все элементы, ключ которых меньше, чем заданный";
         argLen = 1;
     }
 
