@@ -16,5 +16,6 @@ public class RemoveLowerKeyCommand extends Command{
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         cm.removeLowerKey(args[0]);
+        ui.writeln("Команда выполнена");
     }
 }

@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Класс, реализующий команду execute_script
@@ -29,9 +30,6 @@ public class ExecuteScriptCommand extends Command {
             UserInterface fileInterface = new UserInterface(new BufferedReader(new FileReader(path.toFile())), new OutputStreamWriter(System.out), false);
             while (fileInterface.hasNextLine()) {
                 String line = fileInterface.read();
-                if (line.split(" +")[0].equals("execute_script")){
-                    throw new ExecuteScriptException("Вызов скрипта в скрипте");
-                }
                 CommandInvoker.getInstance().executeCommand(cm, fileInterface, line);
             }
         }

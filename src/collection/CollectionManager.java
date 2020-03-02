@@ -25,11 +25,13 @@ public class CollectionManager {
     }
 
     public String show(){
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, City> entry : collection.getCityMap().entrySet()) {
-            sb.append("Key: ").append(entry.getKey()).append("\n").append("Value: ").append(entry.getValue().toString()).append("\n");
-        }
-        return sb.toString();
+        if (!collection.getCityMap().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, City> entry : collection.getCityMap().entrySet()) {
+                sb.append("Key: ").append(entry.getKey()).append("\n").append("Value: ").append(entry.getValue().toString()).append("\n");
+            }
+            return sb.toString();
+        } else return "Коллекция пуста\n";
     }
 
     public void clear(){

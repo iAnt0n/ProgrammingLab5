@@ -54,6 +54,9 @@ public class Main {
                 if (cmd.trim().equals("exit")) Runtime.getRuntime().removeShutdownHook(hook);
                 ci.executeCommand(cm, ui, cmd);
             }
+            catch (StackOverflowError e){
+                ui.writeln("Достигнута максимальная глубина рекурсии при выполнении скрипта. Скрипт прерван");
+            }
             catch(NullPointerException e){
                 ui.writeln("Неизвестная команда. Используйте help для помощи");
             }

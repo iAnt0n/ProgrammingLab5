@@ -52,14 +52,14 @@ public class UserInterface {
         else return scanner.nextLine();
     }
 
-    public Double readDouble(String msg, Number min, Number max){
+    public Double readDouble(String msg, Number min, Number max, int digits){
         if (interactive) {
             writeln(msg);
             Double result = null;
             while (result == null) {
                 try {
                     double d = Double.parseDouble(scanner.nextLine().trim());
-                    if (checkDouble(d, min, max)) {
+                    if (checkDouble(d, min, max, digits)) {
                         result = d;
                     } else {
                         writeln("Неверный ввод. Повторите");
@@ -165,22 +165,22 @@ public class UserInterface {
     public Human readHuman(){
         String name = readString("Введите имя губернатора");
         int age = readLong("Введите возраст губернатора (long > 0)", 0, Integer.MAX_VALUE).intValue();
-        Double height = readDouble("Введите рост губернатора (double > 0)", 0, Double.MAX_VALUE);
+        Double height = readDouble("Введите рост губернатора (double > 0, не более 14 значащих цифр)", 0, Double.MAX_VALUE, 14);
         return new Human(name, age, height);
     }
 
     public Coordinates readCoordinates(){
         Integer x = readLong("Введите Х (long > -773)", -773, Integer.MAX_VALUE).intValue();
-        Double y = readDouble("Введите Y (double < 664)", -Double.MAX_VALUE, 664);
+        Double y = readDouble("Введите Y (double < 664, не более 14 значащих цифр)", -Double.MAX_VALUE, 664, 14);
         return new Coordinates(x, y);
     }
 
     public City readCity(){
         String name = readString("Введите имя города");
         Coordinates coordinates = readCoordinates();
-        float area = readDouble("Введите площадь города (float > 0)", 0, Float.MAX_VALUE).floatValue();
+        float area = readDouble("Введите площадь города (float > 0, не больше 7 значащих цифр)", 0, Float.MAX_VALUE, 7).floatValue();
         Long population = readLong("Введите популяцию (long > 0)", 0, Long.MAX_VALUE);
-        Float metersAboveSeaLevel = readDouble("Введите высоту (float)", -Float.MAX_VALUE, Float.MAX_VALUE).floatValue();
+        Float metersAboveSeaLevel = readDouble("Введите высоту (float, не более 7 значащих цифр)", -Float.MAX_VALUE, Float.MAX_VALUE, 7).floatValue();
         Climate climate = readClimate();
         Government government = readGovernment();
         StandardOfLiving standardOfLiving = readStandardOfLiving();
@@ -192,8 +192,9 @@ public class UserInterface {
             return s>min.longValue()&&s<max.longValue();
     }
 
-    private boolean checkDouble(double s, Number min, Number max) {
-            return s>min.doubleValue()&&s<max.doubleValue();
+    private boolean checkDouble(double s, Number min, Number max, int digits) {
+            String[] num = String.valueOf(s).split("\\.");
+            return s>min.doubleValue()&&s<max.doubleValue()&&num[0].length()+num[1].length()<digits;
     }
 
     public boolean hasNextLine(){

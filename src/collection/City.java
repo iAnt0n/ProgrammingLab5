@@ -141,7 +141,7 @@ public class City implements Comparable{
         this.id = id;
     }
 
-    public void checkFields(){
+    private void checkFields(){
         if (name==null||name.isEmpty()){
             throw new InvalidFieldException("Ошибка в поле объекта: поле name");
         }

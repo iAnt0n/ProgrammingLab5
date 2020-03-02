@@ -15,5 +15,6 @@ public class ClearCommand extends Command{
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         cm.clear();
+        ui.writeln("Коллекция очищена");
     }
 }

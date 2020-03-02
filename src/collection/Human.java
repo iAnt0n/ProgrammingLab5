@@ -31,7 +31,7 @@ public class Human implements Comparable {
         return height;
     }
 
-    public void checkFields() {
+    private void checkFields() {
         if (name == null || name.isEmpty()) {
             throw new InvalidFieldException("Ошибка в исходном файле Json: поле governor.name");
         }

@@ -32,7 +32,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public void checkFields(){
+    private void checkFields(){
         if (x<=-773){
             throw new InvalidFieldException("Ошибка в исходном файле Json: поле coordinates.x");
         }

@@ -19,6 +19,7 @@ public class SaveCommand extends Command {
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         try {
             cm.save("out.json");
+            ui.writeln("Коллекция сохранена");
         }
         catch (IOException e){
             ui.writeln("Ошибка при записи в файл");

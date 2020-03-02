@@ -16,5 +16,6 @@ public class RemoveLowerCommand extends Command {
     @Override
     public void execute(CollectionManager cm, UserInterface ui, String[] args) {
         cm.removeLower(ui.readCity());
+        ui.writeln("Команда выполнена");
     }
 }
