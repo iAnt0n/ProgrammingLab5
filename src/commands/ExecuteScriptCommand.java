@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * Класс, реализующий команду execute_script

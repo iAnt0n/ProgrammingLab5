@@ -1,15 +1,13 @@
 package commands;
 
 import collection.CollectionManager;
-import exceptions.ExecuteScriptException;
 import exceptions.InvalidArgumentsException;
 import utils.UserInterface;
 
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+
 
 /**
  * Реализующий singleton класс, который служит для вызова команд на основании введеной пользователем строки
@@ -25,7 +23,6 @@ public class CommandInvoker {
     }
 
     private HashMap<String, Command> commands = new HashMap<>();
-    private HashSet<Path> scripts = new HashSet<>();
 
     public CommandInvoker(){
         addCmd(new InfoCommand());

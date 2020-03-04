@@ -18,6 +18,5 @@ public class JsonReader {
         try(BufferedReader in = new BufferedReader(new FileReader(path))){
             return objectMapper.readValue(in, new TypeReference<LinkedHashMap<String, City>>() {});
         }
-
     }
 }
